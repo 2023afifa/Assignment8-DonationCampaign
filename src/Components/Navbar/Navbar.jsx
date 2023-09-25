@@ -1,6 +1,6 @@
 const Navbar = () => {
     return (
-        <div className="">
+        <div className="mt-5">
             <div className="navbar bg-base-100">
                 <div className="flex-1">
                     <img src="../../../Resources/Logo.png" alt="" />
