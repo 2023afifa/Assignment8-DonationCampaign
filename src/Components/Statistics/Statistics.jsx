@@ -1,61 +1,54 @@
+import { useLoaderData } from "react-router-dom";
+import { Chart } from "react-google-charts";
+import { useEffect, useState } from "react";
+import { getStoreDonation } from "../../Utility/LocalStorage";
+
 const Statistics = () => {
+    const stats = useLoaderData();
+    const [yourDonation, setYourDonation] = useState([]);
+
+    useEffect(() => {
+        const storeYourDonateId = getStoreDonation();
+        if (totalCard > 0) {
+            const yourPaidDonation = [];
+            for (const id of storeYourDonateId) {
+                const stat = stats.find(stat => stat.id === id);
+                if (stat) {
+                    yourPaidDonation.push(stat);
+                }
+            }
+            setYourDonation(yourPaidDonation);
+        }
+        
+    }, [])
+
+    const totalCard = stats.length;
+    const yourCard = yourDonation.length;
+    console.log(totalCard, yourCard);
+
+    const fraction = yourCard / totalCard;
+    console.log(fraction);
+
+    const yourFraction = fraction * 100;
+    const totalFraction = (100 - yourFraction);
+
+    const data = [
+        ["Donation of all", "Percentage"],
+        ["Total Donation", totalFraction],
+        ["Your Donation", yourFraction],
+    ];
+
     return (
-        <div>
-            <h2 className="text-3xl font-bold text-center my-10">Statistics</h2>
-        </div>
+            <div>
+                <h2 className="text-2xl font-bold text-center">Statistics</h2>
+                <Chart
+                    chartType="PieChart"
+                    data={data}
+                    width={"100%"}
+                    height={"500px"}
+                />
+            </div>
     );
 };
 
 export default Statistics;
-
-// import React, { PureComponent } from 'react';
-// import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
-
-// const data = [
-//   { name: 'Group A', value: 400 },
-//   { name: 'Group B', value: 300 },
-//   { name: 'Group C', value: 300 },
-//   { name: 'Group D', value: 200 },
-// ];
-
-// const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
-
-// const RADIAN = Math.PI / 180;
-// const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
-//   const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-//   const x = cx + radius * Math.cos(-midAngle * RADIAN);
-//   const y = cy + radius * Math.sin(-midAngle * RADIAN);
-
-//   return (
-//     <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
-//       {`${(percent * 100).toFixed(0)}%`}
-//     </text>
-//   );
-// };
-
-// export default class Example extends PureComponent {
-//   static demoUrl = 'https://codesandbox.io/s/pie-chart-with-customized-label-dlhhj';
-
-//   render() {
-//     return (
-//       <ResponsiveContainer width="100%" height="100%">
-//         <PieChart width={400} height={400}>
-//           <Pie
-//             data={data}
-//             cx="50%"
-//             cy="50%"
-//             labelLine={false}
-//             label={renderCustomizedLabel}
-//             outerRadius={80}
-//             fill="#8884d8"
-//             dataKey="value"
-//           >
-//             {data.map((entry, index) => (
-//               <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-//             ))}
-//           </Pie>
-//         </PieChart>
-//       </ResponsiveContainer>
-//     );
-//   }
-// }

@@ -34,7 +34,7 @@ const Donations = () => {
                 }
             </div>
 
-            <div className={dataLength === displayDonation.length ? "hidden" : ""}>
+            <div className={dataLength === displayDonation.length || displayDonation.length <= 4 ? "hidden" : ""}>
                 <div className="text-center mt-8">
                     <button onClick={() => setDataLength(displayDonation.length)} className="btn bg-[#009444] text-white">See All</button>
                 </div>
