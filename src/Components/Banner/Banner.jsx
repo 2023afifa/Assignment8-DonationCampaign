@@ -3,28 +3,26 @@ import '../Banner/Banner.css'
 import AllCard from '../AllCard/AllCard';
 
 const Banner = () => {
-    const [searchCards, setSearchCards] = useState([]);
+    const [cards, setCards] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [filteredData, setFilteredData] = useState([]);
 
     useEffect(() => {
         fetch("donation.json")
             .then(res => res.json())
-            .then(data => setSearchCards(data))
+            .then(data => setCards(data))
     }, [])
 
     const handleSearch = () => {
         if (searchTerm === "") {
-            setFilteredData();
+            setCards(cards);
         }
         else {
-            const filteredResults = searchCards.filter(item => item.category.toLowerCase().includes(searchTerm.toLowerCase()));
+            const filteredResults = cards.filter(item => item.category.toLowerCase().includes(searchTerm.toLowerCase()));
             console.log(filteredResults);
-            setFilteredData(filteredResults);
+            setCards(filteredResults);
         }
     }
-
-
 
     return (
         <div>
@@ -38,10 +36,12 @@ const Banner = () => {
                     </div>
                 </div>
             </div>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-5 lg:gap-8'>
-                {
-                    filteredData.map(card => <AllCard key={card.id} card={card}></AllCard>)
-                }
+            <div className="my-20 mx-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-5 lg:gap-8">
+                    {
+                        cards.map(card => <AllCard key={card.id} card={card}></AllCard>)
+                    }
+                </div>
             </div>
         </div>
     );
