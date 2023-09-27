@@ -6,7 +6,7 @@ const Navbar = () => {
         <div className="mt-5">
             <nav className="navbar bg-base-100">
                 <div className="flex-1">
-                    <img src="../../../Resources/Logo.png" alt="" />
+                    <img src="https://i.ibb.co/6nXtNMd/Logo.png" alt="" />
                 </div>
                 <div className="flex-none">
                     <ul className="menu md:menu-horizontal px-1">
