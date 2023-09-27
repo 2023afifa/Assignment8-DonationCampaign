@@ -24,11 +24,7 @@ const Statistics = () => {
 
     const totalCard = stats.length;
     const yourCard = yourDonation.length;
-    console.log(totalCard, yourCard);
-
     const fraction = yourCard / totalCard;
-    console.log(fraction);
-
     const yourFraction = fraction * 100;
     const totalFraction = (100 - yourFraction);
 

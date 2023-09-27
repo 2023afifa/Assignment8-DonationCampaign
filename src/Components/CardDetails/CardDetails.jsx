@@ -17,14 +17,16 @@ const CardDetails = () => {
 
     return (
         <div className="mt-10">
-            <div className="mx-60">
+            <div className="mx-3 md:mx-10 lg:mx-60">
                 <div className="image-container">
-                    <img className="h-[500px]" src={card.picture} alt="" />
+                    <img className="h-[400px] md:h-[500px]" src={card.picture} alt="" />
                 </div>
-                <button onClick={handleDonation} className="btn text-white border-none absolute mt-[420px] -ml-[770px]" style={{ background: card.text_button_bg }}>Donate ${card.price}</button>
+                <button onClick={handleDonation} className="btn text-white border-none absolute mt-[320px] md:mt-[420px] -ml-[380px] md:-ml-[650px] lg:-ml-[770px]" style={{ background: card.text_button_bg }}>Donate ${card.price}</button>
             </div>
-            <h2 className="text-3xl font-bold my-5">{card.title}</h2>
-            <p className="text-lg">{card.description}</p>
+            <div className="mx-5">
+                <h2 className="text-xl lg:text-3xl font-bold my-5">{card.title}</h2>
+                <p className="text-sm lg:text-lg">{card.description}</p>
+            </div>
             <ToastContainer />
         </div>
     );

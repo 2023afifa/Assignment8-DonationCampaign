@@ -9,7 +9,7 @@ const Navbar = () => {
                     <img src="../../../Resources/Logo.png" alt="" />
                 </div>
                 <div className="flex-none">
-                    <ul className="menu menu-horizontal px-1">
+                    <ul className="menu md:menu-horizontal px-1">
                         <li className="mr-2"><NavLink to="/">Home</NavLink></li>
                         <li className="mr-2"><NavLink to="/donation">Donation</NavLink></li>
                         <li className="mr-2"><NavLink to="/stat">Statistics</NavLink></li>

@@ -11,8 +11,8 @@ const AllCards = () => {
     }, [])
 
     return (
-        <div className="my-20">
-            <div className="grid lg:grid-cols-4 gap-10">
+        <div className="my-20 mx-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-5 lg:gap-8">
                 {
                     cards.map(card => <AllCard key={card.id} card={card}></AllCard>)
                 }
